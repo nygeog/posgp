@@ -1,0 +1,7 @@
+# Secret Python files #
+###################
+*_secret_info.py
+*.pyc
+# JSON files #
+###################
+*test.json
