@@ -25,8 +25,10 @@ def printTest(inText):
   
 #def addPoints(table_name):
 
-# def buffer(in_buffer,buffer_dist,ou_buffer,username,apikey):  	
-# 	"CREATE TABLE latlngtablebuffer_"+fd+" AS SELECT ST_Buffer(the_geom_webmercator, "+bufDist+") AS the_geom_webmercator, cartodb_id, cdbawcensusuid FROM latlngtable_"+fd+"",
-#     "SELECT cdb_cartodbfytable('latlngtablebuffer_"+fd+"');",
+def buffer(in_buffer,buffer_dist,ou_buffer,username,apikey):  	
+	# "CREATE TABLE latlngtablebuffer_"+fd+" AS SELECT ST_Buffer(the_geom_webmercator, "+bufDist+") AS the_geom_webmercator, cartodb_id, cdbawcensusuid FROM latlngtable_"+fd+"",
+    # "SELECT cdb_cartodbfytable('latlngtablebuffer_"+fd+"');",
+	"CREATE TABLE "+ou_buffer+" AS SELECT ST_Buffer(the_geom_webmercator, "+buffer_dist+") AS * FROM "+in_buffer
+
 
 #def intersect(intables,outtables,infields):
