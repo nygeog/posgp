@@ -7,9 +7,25 @@ import urllib
 import urllib2
 import time
 import sqlalchemy
+import psycopg2
 
 def printTest(inText):
 	print inText + ' posgp.py - printTest'
+
+def printCensusTractGEOIDS(inState):
+	#try:
+	# conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
+	# cur = conn.cursor()
+	cur.execute("""SELECT geoid10 from tracts_2010_state_"""+inState)
+	rows = cur.fetchall()
+	print "\nShow me the census tracts:\n"
+	for row in rows:
+		print "   ", row[0]
+
+	# except:
+	# 	print "I am unable to connect to the database"
+
+
 
 # def createTable(table_name,username,apikey): #add a field for a dictionary of fields and field types you want to add
 # 	url = "https://%s.cartodb.com/api/v1/sql" % username
@@ -25,10 +41,10 @@ def printTest(inText):
   
 #def addPoints(table_name):
 
-def buffer(in_buffer,buffer_dist,ou_buffer,username,apikey):  	
-	# "CREATE TABLE latlngtablebuffer_"+fd+" AS SELECT ST_Buffer(the_geom_webmercator, "+bufDist+") AS the_geom_webmercator, cartodb_id, cdbawcensusuid FROM latlngtable_"+fd+"",
-    # "SELECT cdb_cartodbfytable('latlngtablebuffer_"+fd+"');",
-	"CREATE TABLE "+ou_buffer+" AS SELECT ST_Buffer(the_geom_webmercator, "+buffer_dist+") AS * FROM "+in_buffer
+# def buffer(in_buffer,buffer_dist,ou_buffer,username,apikey):  	
+# 	# "CREATE TABLE latlngtablebuffer_"+fd+" AS SELECT ST_Buffer(the_geom_webmercator, "+bufDist+") AS the_geom_webmercator, cartodb_id, cdbawcensusuid FROM latlngtable_"+fd+"",
+#     # "SELECT cdb_cartodbfytable('latlngtablebuffer_"+fd+"');",
+# 	"CREATE TABLE "+ou_buffer+" AS SELECT ST_Buffer(the_geom_webmercator, "+buffer_dist+") AS * FROM "+in_buffer
 
 
 #def intersect(intables,outtables,infields):

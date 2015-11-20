@@ -1,10 +1,21 @@
-import _secret_info
+import psycopg2
 import posgp
+import _secret_info
 
-print 'The test begins now'
+dbname   = _secret_info.s_dbname
+user     = _secret_info.s_user
+host     = _secret_info.s_host
+password = _secret_info.s_password
 
-cdbU = _secret_info.cartoDBusername
-cdbK = _secret_info.cartoDBapikey
+try:
+    conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
+except:
+    print "I am unable to connect to the database"
+cur = conn.cursor()
 
-posgp.printTest("Let's try the")
 
+posgp.printTest('connected')
+
+
+
+posgp.printCensusTractGEOIDS('36')
