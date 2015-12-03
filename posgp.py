@@ -6,16 +6,19 @@
 import urllib
 import urllib2
 import time
-import sqlalchemy
+#import sqlalchemy - maybe don't need
 import psycopg2
+
+
+#def posgpAuthenticate():
 
 def printTest(inText):
 	print inText + ' posgp.py - printTest'
 
-def printCensusTractGEOIDS(inState):
+def printCensusTractGEOIDS(inState,dbname,user,host,password):
 	#try:
-	# conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
-	# cur = conn.cursor()
+	conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
+	cur = conn.cursor()
 	cur.execute("""SELECT geoid10 from tracts_2010_state_"""+inState)
 	rows = cur.fetchall()
 	print "\nShow me the census tracts:\n"
