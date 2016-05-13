@@ -7,15 +7,5 @@ user     = _secret_info.s_user
 host     = _secret_info.s_host
 password = _secret_info.s_password
 
-try:
-    conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
-except:
-    print "I am unable to connect to the database"
-cur = conn.cursor()
+posgp.printCensusTractGEOIDS('21',dbname,user,host,password)
 
-
-posgp.printTest('connected')
-
-
-
-posgp.printCensusTractGEOIDS('36')

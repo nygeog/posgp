@@ -9,22 +9,23 @@ import time
 import sqlalchemy
 import psycopg2
 
-def printTest(inText):
-	print inText + ' posgp.py - printTest'
 
-def printCensusTractGEOIDS(inState):
-	#try:
-	# conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
-	# cur = conn.cursor()
-	cur.execute("""SELECT geoid10 from tracts_2010_state_"""+inState)
-	rows = cur.fetchall()
-	print "\nShow me the census tracts:\n"
-	for row in rows:
-		print "   ", row[0]
+def printCensusTractGEOIDS(inState,dbname,user,host,password):
+	
+	statement = """SELECT geoid10 from tracts_2010_state_"""+inState
+	
+	try: 
+		conn = psycopg2.connect("dbname='"+dbname+"' user='"+user+"' host='"+host+"' password='"+password+"'")
+		cur = conn.cursor()
+		cur.execute(statement)
+		rows = cur.fetchall()
+		print "\nPrint the census tract ids:\n"
+		for row in rows:
+			print "   ", row[0]
+	except:
+		print "unable to connect to the database"
 
-	# except:
-	# 	print "I am unable to connect to the database"
-
+	
 
 
 # def createTable(table_name,username,apikey): #add a field for a dictionary of fields and field types you want to add
